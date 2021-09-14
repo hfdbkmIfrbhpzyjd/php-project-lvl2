@@ -1,0 +1,10 @@
+{
+    "name": "hexlet/code",
+    "description": "second project",
+    "type": "project",
+    "license": "proprietary",
+    "minimum-stability": "alpha",
+    "require": {
+        "docopt/docopt": "^1.0"
+    }
+}
