@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 use function Differ\Differ\fileDiff;
 use function Differ\Parser\parse;
 
-class StackTest extends TestCase
+class GendiffTest extends TestCase
 {
     public function testParse()
     {
