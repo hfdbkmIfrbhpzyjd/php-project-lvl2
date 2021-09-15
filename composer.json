@@ -1,10 +1,22 @@
 {
     "name": "hexlet/code",
+    "bin": [
+        "bin/gendiff"
+    ],
     "description": "second project",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "alpha",
+    "autoload": {
+        "files": [
+            "src/Differ.php",
+            "src/Parser.php"
+        ]
+    },
     "require": {
         "docopt/docopt": "^1.0"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.6"
     }
 }
