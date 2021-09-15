@@ -11,8 +11,8 @@ class GendiffTest extends TestCase
 {
     public function testParse()
     {
-        $filepath = 'tests/fixtures/file1.json';
-        $file = file_get_contents($filepath);
+        $filepathjson = 'tests/fixtures/file1.json';
+        $filepathyml = 'tests/fixtures/file1.yaml';
         $expected = [
           "host" => "hexlet.io",
           "timeout" => 50,
@@ -20,13 +20,20 @@ class GendiffTest extends TestCase
           "follow" => "false"
         ];
 
-        $this->assertEquals($expected, parse($filepath));
+        $this->assertEquals($expected, parse($filepathjson));
+        $this->assertEquals($expected, parse($filepathyml));
     }
 
     public function testFileDiff()
     {
         $filepath1 = 'tests/fixtures/file1.json';
         $filepath2 = 'tests/fixtures/file2.json';
+        $expected = file_get_contents('tests/fixtures/expectForDiffer');
+
+        $this->assertEquals($expected, fileDiff($filepath1, $filepath2));
+
+        $filepath1 = 'tests/fixtures/file1.yaml';
+        $filepath2 = 'tests/fixtures/file2.yaml';
         $expected = file_get_contents('tests/fixtures/expectForDiffer');
 
         $this->assertEquals($expected, fileDiff($filepath1, $filepath2));
