@@ -8,7 +8,10 @@ function fileDiff(string $filepath1, string $filepath2, string $format = 'stylis
 {
     $file1 = parse($filepath1);
     $file2 = parse($filepath2);
-    $keys = array_unique(array_merge(array_keys($file1), array_keys($file2)));
+    $keys1 = array_keys($file1);
+    $keys2 = array_keys($file2);
+    $keys = array_merge($keys1, $keys2);
+    $keys = array_unique($keys);
     sort($keys);
     $res = [];
     foreach ($keys as $key) {
