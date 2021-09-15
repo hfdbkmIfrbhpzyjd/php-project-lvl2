@@ -2,8 +2,6 @@
 
 namespace Differ\Differ;
 
-
-
 use function Differ\Parser\parse;
 
 function fileDiff(string $filepath1, string $filepath2, string $format = 'stylish'): string
