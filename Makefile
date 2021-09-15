@@ -6,3 +6,6 @@ lint:
 
 gendiff:
 	./bin/gendiff
+
+test:
+	composer exec --verbose phpunit tests

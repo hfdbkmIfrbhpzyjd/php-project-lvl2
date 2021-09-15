@@ -15,5 +15,5 @@ function parse(string $path)
         throw new \Exception("Can't read file: {$path}");
     }
     $contentAssoc = json_decode($content, true);
-    return array_map(fn($el) => is_bool($el) ? (true ? 'true' : 'false') : $el, $contentAssoc);
+    return array_map(fn($el) => is_bool($el) ? ($el === true ? 'true' : 'false') : $el, $contentAssoc);
 }
