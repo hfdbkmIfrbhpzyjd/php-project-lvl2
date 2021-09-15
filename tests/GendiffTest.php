@@ -3,9 +3,9 @@
 namespace Differ\Tests;
 
 use PHPUnit\Framework\TestCase;
+
 use function Differ\Differ\fileDiff;
 use function Differ\Parser\parse;
-
 
 class StackTest extends TestCase
 {
@@ -28,7 +28,7 @@ class StackTest extends TestCase
         $filepath1 = 'tests/fixtures/file1.json';
         $filepath2 = 'tests/fixtures/file2.json';
         $expected = file_get_contents('tests/fixtures/expectForDiffer');
-        
+
         $this->assertEquals($expected, fileDiff($filepath1, $filepath2));
     }
 }
