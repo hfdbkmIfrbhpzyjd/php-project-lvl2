@@ -23,7 +23,7 @@ function parse(string $path)
             return json_decode($content, true);
         case 'yml' || 'yaml':
             return Yaml::parse($content);
-        default :
+        default:
             return new ParseError();
     }
 }

@@ -2,8 +2,9 @@
 
 namespace Differ\tests;
 
-use function Differ\Differ\fileDiff;
 use PHPUnit\Framework\TestCase;
+
+use function Differ\Differ\fileDiff;
 
 const PATH_TO_BEFORE = '../tests/fixtures/before.';
 const PATH_TO_AFTER = '../tests/fixtures/after.';

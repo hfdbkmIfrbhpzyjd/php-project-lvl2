@@ -15,7 +15,7 @@ function render($data, $depth = 0)
         $name = $value['name'];
         $oldValue = genValue($value['oldValue'], $depth);
         $newValue = genValue($value['newValue'], $depth);
-        
+
         switch ($status) {
             case 'nested':
                 $acc[] = "{$indent}  {$name}: " . render($value['children'], $depth + 1);
