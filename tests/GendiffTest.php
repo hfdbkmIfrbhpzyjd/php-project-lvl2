@@ -28,7 +28,6 @@ class GenDiffTest extends TestCase
     {
         return [
             ['json', 'stylish'],
-            ['yml', 'json'],
             ['json', 'plain']
         ];
     }
