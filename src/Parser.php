@@ -20,11 +20,9 @@ function parse(string $path)
 
     switch ($extension) {
         case 'json':
-            $contentAssoc = json_decode($content, true);
-            return array_map(fn($el) => is_bool($el) ? ($el === true ? 'true' : 'false') : $el, $contentAssoc);
+            return json_decode($content, true);
         case 'yml' || 'yaml':
-            $contentAssoc = Yaml::parse($content);
-            return array_map(fn($el) => is_bool($el) ? ($el === true ? 'true' : 'false') : $el, $contentAssoc);
+            return Yaml::parse($content);
         default :
             return new ParseError();
     }

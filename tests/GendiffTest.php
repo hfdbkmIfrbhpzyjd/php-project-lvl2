@@ -1,41 +1,34 @@
 <?php
 
-namespace Differ\Tests;
-
-use PHPUnit\Framework\TestCase;
+namespace Differ\tests;
 
 use function Differ\Differ\fileDiff;
-use function Differ\Parser\parse;
+use PHPUnit\Framework\TestCase;
 
-class GendiffTest extends TestCase
+const PATH_TO_BEFORE = '../tests/fixtures/before.';
+const PATH_TO_AFTER = '../tests/fixtures/after.';
+const PATH_TO_RESULT = __DIR__ . '/fixtures/results/';
+
+class GenDiffTest extends TestCase
 {
-    public function testParse()
-    {
-        $filepathjson = 'tests/fixtures/file1.json';
-        $filepathyml = 'tests/fixtures/file1.yaml';
-        $expected = [
-          "host" => "hexlet.io",
-          "timeout" => 50,
-          "proxy" => "123.234.53.22",
-          "follow" => "false"
-        ];
+    /**
+     * @dataProvider additionProvider
+    */
 
-        $this->assertEquals($expected, parse($filepathjson));
-        $this->assertEquals($expected, parse($filepathyml));
+    public function testGendiff($extension, $format)
+    {
+        $pathToFile1 = PATH_TO_BEFORE . $extension;
+        $pathToFile2 = PATH_TO_AFTER . $extension;
+        $expected = PATH_TO_RESULT . $format;
+        $this->assertEquals(file_get_contents($expected), fileDiff($pathToFile1, $pathToFile2, $format));
     }
 
-    public function testFileDiff()
+    public function additionProvider()
     {
-        $filepath1 = 'tests/fixtures/file1.json';
-        $filepath2 = 'tests/fixtures/file2.json';
-        $expected = file_get_contents('tests/fixtures/expectForDiffer');
-
-        $this->assertEquals($expected, fileDiff($filepath1, $filepath2));
-
-        $filepath1 = 'tests/fixtures/file1.yaml';
-        $filepath2 = 'tests/fixtures/file2.yaml';
-        $expected = file_get_contents('tests/fixtures/expectForDiffer');
-
-        $this->assertEquals($expected, fileDiff($filepath1, $filepath2));
+        return [
+            ['json', 'stylish'],
+            ['yml', 'json'],
+            ['json', 'plain']
+        ];
     }
 }
