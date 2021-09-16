@@ -4,7 +4,7 @@ namespace Differ\tests;
 
 use PHPUnit\Framework\TestCase;
 
-use function Differ\Differ\fileDiff;
+use function Differ\Differ\genDiff;
 
 const PATH_TO_BEFORE = '../tests/fixtures/before.';
 const PATH_TO_AFTER = '../tests/fixtures/after.';
@@ -21,7 +21,7 @@ class GenDiffTest extends TestCase
         $pathToFile1 = PATH_TO_BEFORE . $extension;
         $pathToFile2 = PATH_TO_AFTER . $extension;
         $expected = PATH_TO_RESULT . $format;
-        $this->assertEquals(file_get_contents($expected), fileDiff($pathToFile1, $pathToFile2, $format));
+        $this->assertEquals(file_get_contents($expected), genDiff($pathToFile1, $pathToFile2, $format));
     }
 
     public function additionProvider()

@@ -6,7 +6,7 @@ use Funct\Collection;
 
 use function Differ\Parser\parse;
 
-function fileDiff(string $filepath1, string $filepath2, string $format = 'stylish'): string
+function genDiff(string $filepath1, string $filepath2, string $format = 'stylish'): string
 {
     $file1 = parse(genAbsolutPath($filepath1));
     $file2 = parse(genAbsolutPath($filepath2));
