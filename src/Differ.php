@@ -4,6 +4,7 @@ namespace Differ\Differ;
 
 use function Differ\Parsers\parse;
 use function Differ\Formatters\format;
+use function Functional\sort;
 
 function genDiff(string $filePath1, string $filePath2, string $format = "stylish"): string
 {
@@ -12,7 +13,7 @@ function genDiff(string $filePath1, string $filePath2, string $format = "stylish
     return format($AST, $format);
 }
 
-function genAbsolutPath($pathToFile)
+function genAbsolutPath(string $pathToFile): string
 {
     $absolutPath = $pathToFile[0] === '/' ? $pathToFile : __DIR__ . "/{$pathToFile}";
     if (file_exists($absolutPath)) {
@@ -32,7 +33,7 @@ function genAST(object $firstFile, object $secondFile): object
     $firstFileKeys = array_keys((array) $firstFile);
     $secondFileKeys = array_keys((array) $secondFile);
     $unionKeys = array_merge($firstFileKeys, array_diff($secondFileKeys, $firstFileKeys));
-    sort($unionKeys);
+    $sortedKeys = sort($unionKeys, fn($first, $second) => strcmp($first, $second));
 
     $AST = array_map(function ($name) use ($firstFile, $secondFile) {
 
@@ -60,7 +61,7 @@ function genAST(object $firstFile, object $secondFile): object
         }
 
         return null;
-    }, $unionKeys);
+    }, $sortedKeys);
 
     return (object) $AST;
 }
