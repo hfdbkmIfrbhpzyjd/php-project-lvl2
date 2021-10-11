@@ -12,11 +12,6 @@
 ### Description
 'Generate diff' is the application for search differeces in configuration files.
 
-### Install
-```
-curl -sS https://getcomposer.org/installer | php
-php composer.phar global require albert1991/php-project-lvl2
-```
 ### Help
 ```
 gendiff -h
